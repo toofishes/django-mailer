@@ -108,6 +108,10 @@ def send_all():
                 deferred += 1
                 # Get new connection, it case the connection itself has an error.
                 connection = None
+            except err:
+                mark_as_deferred(message, err)
+                deferred += 1
+
     finally:
         logging.debug("releasing lock...")
         lock.release()
