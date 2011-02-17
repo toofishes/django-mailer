@@ -76,12 +76,12 @@ class Message(models.Model):
     
     def defer(self):
         self.priority = "4"
-        self.save()
+        self.save(force_update=True)
     
     def retry(self, new_priority=2):
         if self.priority == "4":
             self.priority = new_priority
-            self.save()
+            self.save(force_update=True)
             return True
         else:
             return False
